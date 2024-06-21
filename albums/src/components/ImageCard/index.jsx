@@ -1,24 +1,14 @@
 import React from 'react';
-import styled from 'styled-components';
+import './ImageCard.css'
 
 const ImageCard = ({ image }) => {
   return (
-    <Card>
+    <div className="image-card">
       <img src={image.url} alt={image.title} />
       <p>{image.title}</p>
-    </Card>
+    </div>
   );
 };
 
-const Card = styled.div`
-  margin: 1rem;
-  img {
-    width: 100%;
-    height: auto;
-  }
-  p {
-    text-align: center;
-  }
-`;
 
 export default ImageCard;

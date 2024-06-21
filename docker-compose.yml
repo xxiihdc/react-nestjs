@@ -1,17 +1,16 @@
-version: '3.8'
-
 services:
   frontend:
     build:
       context: ./albums
       dockerfile: Dockerfile
     ports:
-      - "80:80"
+      - "3000:3000"
     volumes:
-      - ./albums:/app
+      - ./albums:/app:rw
       - /app/node_modules
     environment:
       - NODE_ENV=development
+    command: ["npm", "start"]
 
   backend:
     build:
@@ -20,7 +19,7 @@ services:
     ports:
       - "3001:3001"
     volumes:
-      - ./albums-be:/app
+      - ./albums-be:/app:rw
       - /app/node_modules
     environment:
       - NODE_ENV=development

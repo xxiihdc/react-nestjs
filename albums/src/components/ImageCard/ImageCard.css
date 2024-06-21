@@ -1,0 +1,17 @@
+/* ImageCard.css */
+.image-card {
+  /* width: calc(33.33% - 10px); */
+  margin-bottom: 10px;
+  display: inline-block;
+  width: 100%;
+}
+.image-card img {
+  display:block;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.image-card h3 {
+  margin-top: 10px;
+}
