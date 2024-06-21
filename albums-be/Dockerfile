@@ -18,6 +18,6 @@ COPY --from=build /app/dist ./dist
 COPY --from=build /app/node_modules ./node_modules
 COPY package.json .
 
-CMD ["node", "dist/main.js"]
+CMD ["npm", "run", "start:dev"]
 
 EXPOSE 3001
