@@ -1,39 +1,68 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import './Home.css'
 import ImageCard from '../../components/ImageCard';
 import SearchBar from '../../components/SearchBar';
-
+import { get } from '../../services/apiService.js';
 
 const HomePage = () => {
   const [images, setImages] = useState([])
+  const [columns, setColumns] = useState([]);
+  const containerRef = useRef(null);
+
   useEffect(() => {
-    const imageArray = Array.from(Array(10).keys()).map((index) => ({
-      url: index % 2 === 0 ? `${process.env.PUBLIC_URL}/img1.jpeg` : `${process.env.PUBLIC_URL}/img2.jpeg`,
-      title: `title ${index}`,
-      height: Math.floor(Math.random() * 200) + 100,
-    }));
-    
-    setImages(imageArray);
+    const fetchImg = async () => {
+      try {
+        const resp = await get("/image");
+        setImages(Array.isArray(resp.data) ? resp.data : []);
+      } catch (error) {
+        setImages([]);
+      }
+    };
+    fetchImg();
+  }, []);
 
-  }, [])
+  useEffect(() => {
+    const updateColumns = () => {
+      console.log("debug", containerRef.current)
+      if (containerRef.current) {
+        const containerWidth = containerRef.current.clientWidth;
+        const newColumns = distributeImagesBySize(images, 3, containerWidth);
+        setColumns(newColumns);
+      }
+    };
 
-  const distributeImagesByHeight = (items, numOfColumns) => {
+    console.log("duc")
+    updateColumns();
+
+    window.addEventListener('resize', updateColumns);
+    return () => {
+      window.removeEventListener('resize', updateColumns);
+    };
+  }, [images]);
+
+
+  const distributeImagesBySize = (items, numOfColumns, columnWidth) => {
     const columns = Array.from({ length: numOfColumns }, () => []);
     const columnHeights = Array(numOfColumns).fill(0);
-
+  
     items.forEach((item) => {
+      const aspectRatio = item.height / item.width;
+      
       let minHeightIndex = columnHeights.indexOf(Math.min(...columnHeights));
-      columns[minHeightIndex].push(item);
-      columnHeights[minHeightIndex] += item.height;
+      
+      const scaledHeight = columnWidth * aspectRatio;
+      
+      debugger
+      columns[minHeightIndex].push({ ...item, scaledHeight });
+      
+      columnHeights[minHeightIndex] += scaledHeight;
     });
 
     return columns;
   };
 
-  const columns = distributeImagesByHeight(images, 3);
-
   return (
-    <div className='container'>
+    <div className='container' ref={containerRef}>
       <div className="navbar">
         <SearchBar/>
       </div>
@@ -43,7 +72,7 @@ const HomePage = () => {
             <div className="column" key={colIndex}>
               {
                 column.map((image, index) => (
-                  <ImageCard key={index} image={image} />
+                  <ImageCard key={index} image={{url: `${process.env.PUBLIC_URL}/${image.name}`, title: image.name}} />
                 ))
               }
             </div>
