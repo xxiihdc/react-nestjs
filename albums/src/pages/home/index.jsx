@@ -52,7 +52,6 @@ const HomePage = () => {
       
       const scaledHeight = columnWidth * aspectRatio;
       
-      debugger
       columns[minHeightIndex].push({ ...item, scaledHeight });
       
       columnHeights[minHeightIndex] += scaledHeight;
