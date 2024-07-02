@@ -1,8 +1,8 @@
-import apiService from 'services/apiService';
+import apiService from './apiService';
 
 // USER
 function login(data) {
-  return apiService.post('user/login', data);
+  return apiService.post('auth/login', data);
 }
 
-export { login};
+export { login };
