@@ -1,18 +1,25 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import HomePage from './pages/home/index';
-import PhotoPage from './pages/photos/index';
-import LoginPage from './pages/login';
+import React, { lazy, Suspense } from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import LoadingOverlay from "./components/Common/LoadingOverlay";
 
+
+// LAZY COMPONENTS
+const HomePage  = lazy(() => import("./pages/home/index"));
+const PhotoPage = lazy(() => import("./pages/photos/index"));
+const LoginPage = lazy(() => import("./pages/login"));
+const UserPage  = lazy(() => import("./pages/user"))
 
 const App = () => {
   return (
     <Router>
-      <Routes>
-        <Route exact path="/" element={<HomePage/>} />
-        <Route path="/photos" element={<PhotoPage/>} />
-        <Route path="/login" element={<LoginPage/>} />
-      </Routes>
+      <Suspense fallback={LoadingOverlay}>
+        <Routes>
+          <Route exact path="/" element={<HomePage />} />
+          <Route path="/photos" element={<PhotoPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/:userId" element={<UserPage />} />
+        </Routes>
+      </Suspense>
     </Router>
   );
 };

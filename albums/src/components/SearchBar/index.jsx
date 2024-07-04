@@ -1,4 +1,5 @@
 // import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import IconButton from "@mui/material/IconButton";
 import TextField from "@mui/material/TextField";
 import NotificationsIcon from "@mui/icons-material/Notifications";
@@ -11,6 +12,17 @@ import "./SearchBar.css";
 import ButtonLink from "../ButtonLink/index";
 
 const SearchBar = ({ setSearchQuery }) => {
+  const navigate = useNavigate();
+
+  const handleIconButtonClick = (path) => {
+    console.log("navigate")
+    navigate(path)
+  }
+
+  const loggedIn = () => {
+    return true;
+  }
+
   return (
     <div>
       <Stack direction="row" alignItems="center" spacing={2}>
@@ -79,6 +91,7 @@ const SearchBar = ({ setSearchQuery }) => {
         </IconButton>
 
         <IconButton
+          onClick={() => handleIconButtonClick("/login")}
           type="submit"
           aria-label="search"
           style={{

@@ -13,7 +13,7 @@ export class AuthController {
       })
     }
     const secretKey = 'jwt_secret_key_123!@#AAAAAAA    :)';
-    const token = jwt.sign({ userId: 1, username: 'username' }, secretKey);
+    const token = jwt.sign({ id: 1, username: 'username' }, secretKey);
     return res.status(200).json({
       data: {token},
       message: "Success"
