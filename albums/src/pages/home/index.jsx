@@ -23,15 +23,12 @@ const HomePage = () => {
 
   useEffect(() => {
     const updateColumns = () => {
-      console.log("debug", containerRef.current)
       if (containerRef.current) {
         const containerWidth = containerRef.current.clientWidth;
         const newColumns = distributeImagesBySize(images, 3, containerWidth);
         setColumns(newColumns);
       }
     };
-
-    console.log("duc")
     updateColumns();
 
     window.addEventListener('resize', updateColumns);
