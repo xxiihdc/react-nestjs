@@ -1,9 +1,9 @@
-import { Controller, Get, Res} from '@nestjs/common';
+import { Controller, Get} from '@nestjs/common';
 
 @Controller('users')
-export class AuthController {
-  @Get()
+export class UserController {
+  @Get(":id")
   show(){
-
+    return "OK"
   }
 }

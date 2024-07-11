@@ -12,7 +12,7 @@ const LoginForm = () => {
   const navigate = useNavigate();
 
   const makeAnimationStartHandler = (stateSetter) => (e) => {
-    console.log("animaion");
+    console.log("animation");
     const autoFilled = !!e.target?.matches("*:-webkit-autofill");
     if (e.animationName === "mui-auto-fill") {
       stateSetter(autoFilled);

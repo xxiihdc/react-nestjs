@@ -3,7 +3,7 @@ import {get} from '../utils/storageUtils/accessToken'
 
 function fetchUserInfo() {
   var user = get()
-  return apiService.post(`/users/${user.id}`)
+  return apiService.get(`/users/${user.id}`)
 }
 
 export { fetchUserInfo }
