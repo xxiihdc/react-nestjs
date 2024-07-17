@@ -10,17 +10,16 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 import Stack from "@mui/material/Stack";
 import "./SearchBar.css";
 import ButtonLink from "../ButtonLink/index";
+import { useState } from "react";
+import { ROUTES } from "../../constants";
+
 
 const SearchBar = ({ setSearchQuery }) => {
   const navigate = useNavigate();
+  const [loggedIn, setLoggedIn] = useState(false)
 
   const handleIconButtonClick = (path) => {
-    console.log("navigate")
     navigate(path)
-  }
-
-  const loggedIn = () => {
-    return true;
   }
 
   return (
@@ -91,7 +90,7 @@ const SearchBar = ({ setSearchQuery }) => {
         </IconButton>
 
         <IconButton
-          onClick={() => handleIconButtonClick("/login")}
+          onClick={() => handleIconButtonClick(ROUTES.LOGIN)}
           type="submit"
           aria-label="search"
           style={{
