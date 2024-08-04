@@ -1,10 +1,13 @@
 import React, { useEffect, useState, useRef } from 'react';
 import './Home.css'
 import ImageCard from '../../components/ImageCard';
-import SearchBar from '../../components/SearchBar';
 import { get } from '../../services/apiService.js';
+import { useNavigate } from 'react-router-dom';
+import withImageHover from '../../hoc/withImageHover';
 
 const HomePage = () => {
+  const ImageCardWithHover = withImageHover(ImageCard);
+  const navigate = useNavigate()
   const [images, setImages] = useState([])
   const [columns, setColumns] = useState([]);
   const containerRef = useRef(null);
@@ -58,17 +61,19 @@ const HomePage = () => {
   };
 
   return (
-    <div className='container' ref={containerRef}>
-      <div className="navbar">
-        <SearchBar/>
-      </div>
+    <div className='w-screen px-2' ref={containerRef}>
       <div className="images-container">
         {
           columns.map((column, colIndex) => (
             <div className="column" key={colIndex}>
               {
                 column.map((image, index) => (
-                  <ImageCard key={index} image={{url: `${process.env.PUBLIC_URL}/${image.name}`, title: image.name}} />
+                  <div onClick={() => navigate(`/image/${image.name}`)}>
+                  <ImageCardWithHover  
+                    key={index}
+                    image={{url: `${process.env.PUBLIC_URL}/${image.name}`, title: image.name}}
+                  />
+                  </div>
                 ))
               }
             </div>

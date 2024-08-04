@@ -12,5 +12,8 @@ COPY . .
 ENV CI=true
 ENV PORT=3000
 
+# Ensure Vite is installed globally
+RUN npm install -g vite
+
 # Use a development server
-CMD ["npm", "start"] 
+CMD ["vite"]

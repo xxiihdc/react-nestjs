@@ -3,10 +3,6 @@
   margin: 0 auto;
 }
 
-.navbar {
-  margin-bottom: 20px;
-}
-
 .images-container {
   display: flex; /* Sử dụng flex để các cột hiển thị bên cạnh nhau */
   gap: 10px; /* Khoảng cách giữa các cột */
