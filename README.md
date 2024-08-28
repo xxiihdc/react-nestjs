@@ -1,7 +1,7 @@
 # How to setup:
 - TBD
 
-# React tip apply: :D
+# React tip try to apply: :D
 
 - https://dev.to/_ndeyefatoudiop/101-react-tips-tricks-for-beginners-to-experts-4m11
 
@@ -24,3 +24,12 @@
 17. Make your code more extensible with render functions or component functions props / Làm cho mã của bạn dễ mở rộng hơn với các hàm render hoặc props là các hàm component.
 18. When dealing with different cases, use value === case && <Component /> to avoid holding onto old state / Khi xử lý các trường hợp khác nhau, hãy sử dụng value === case && <Component /> để tránh giữ lại trạng thái cũ.
 19. Always use error boundaries / Luôn sử dụng Error Boundaries.
+20. Use crypto.randomUUID or Math.random to generate keys / Sử dụng crypto.randomUUID hoặc Math.random để tạo khóa.
+21. Make sure your list items IDs are stable (i.e., they don't change between renders) / Đảm bảo rằng các ID của phần tử trong danh sách ổn định (tức là chúng không thay đổi giữa các lần render).
+22. Strategically use the key attribute to trigger component re-renders / Sử dụng có chiến lược thuộc tính key để kích hoạt re-render của component.
+23. Sử Dụng Hàm ref Callback Cho Các Nhiệm Vụ Như Theo Dõi Thay Đổi Kích Thước Và Quản Lý Nhiều Phần Tử Node
+24. Colocate React Components With Their Assets (e.g., Styles, Images, etc.) / Đặt Các Thành Phần React Cùng Với Các Tài Nguyên Của Chúng (ví dụ: Styles, Images, v.v.)
+25. Limit Your Component File Size / Hạn Chế Kích Thước Tệp Thành Phần Của Bạn.
+26. Limit the Number of Return Statements in Your Functional Component File / Hạn Chế Số Lượng Câu Lệnh Return Trong Tệp Component Functional.
+27. Prefer Named Exports Over Default Exports / Ưu Tiên Export Có Tên Hơn Là Export Mặc Định.
+28. 
