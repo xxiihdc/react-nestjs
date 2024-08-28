@@ -44,13 +44,10 @@ const HomePage = () => {
   
     items.forEach((item) => {
       const aspectRatio = item.height / item.width;
-      
       let minHeightIndex = columnHeights.indexOf(Math.min(...columnHeights));
-      
       const scaledHeight = columnWidth * aspectRatio;
-      
+
       columns[minHeightIndex].push({ ...item, scaledHeight });
-      
       columnHeights[minHeightIndex] += scaledHeight;
     });
 
@@ -58,7 +55,7 @@ const HomePage = () => {
   };
 
   return (
-    <div className='container' ref={containerRef}>
+    <div className='mx-auto p-2' ref={containerRef}>
       <div className="navbar">
         <SearchBar/>
       </div>
